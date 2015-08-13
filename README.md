@@ -1,5 +1,5 @@
 # miniVan
-Users, Groups and Resources Access Control Admin DoctrineMongoORM backed ZF2 Module
+Users, Groups and Resources Access Control Admin Doctrine-ORM backed ZF2 Module
 
 [![ScreenShot](http://img.youtube.com/vi/KPTRfUPqqF4/0.jpg)](https://www.youtube.com/watch?v=KPTRfUPqqF4)
 
