@@ -1,0 +1,71 @@
+var user = {
+    'opt':{
+        'addFrm':'#newUserFrm',
+        'addUrl':'/minivan/user/create',
+        'listUrl':'/minivan/user/list',
+        'listContainer':'.user-list-cont',
+        'listNoIsLoaded':true,
+        'deleteBtn':'.delete-u-btn',
+        'deleteUrl':'/minivan/user/delete',
+        'roleResourcesBtn':'.role-resources-btn',
+        'role_id':'',
+        'roleRecursosModal':'#roleRecursosModal',
+        'roleResourcesFormContainer':'#roleResourcesFormContainer',
+        'roleRecursoFrmUrl':'/minivan/admin/rolerecursofrm',
+        'roleRecursosFrm':'#roleRecursosFrm',
+        'roleRecursosUrl':'/minivan/admin/assignrolerecursos'
+    },
+    'list':function(){
+        $.ajax({
+            url:user.opt.listUrl,
+            type:"GET",
+            success:function(data){
+                CR.check_errors(data);
+                $(user.opt.listContainer).html(data);
+            }
+        });
+    },
+    'delete':function(user_id){
+        $.ajax({
+            url:user.opt.deleteUrl,
+            data:{
+                user_id:user_id
+            },
+            type:"GET",
+            dataType:"json",
+            success:function(data){           	
+                CR.check_errors(data);
+                if(data.invalid_form == 1){
+                    CR.noty_form_errors(data.error_list);
+                }
+                if(data.is_success == 1){
+                    CR.success_msg(data.flash);
+                    user.list();
+                }
+            }
+        });
+    },
+    'add':function(user_data){
+        $.ajax({
+            url:user.opt.addUrl,
+            data:user_data,
+            type:"GET",
+            dataType:"json",
+            success:function(data){
+                CR.check_errors(data);
+                if(data.invalid_form == 1){
+                    CR.noty_form_errors(data.error_list);
+                }
+                if(data.is_success == 1){
+                    CR.success_msg(data.flash);
+                    user.list();
+                    $(user.opt.addFrm).trigger('reset');
+                    $('#myTabUser a:first').tab('show');
+                }
+            }
+        });
+    },
+    'init':function(){
+        user.list();
+    }
+};

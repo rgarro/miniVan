@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="animated flash page-header"  style="font-family: 'Abril Fatface', cursive;margin-top:8px;"><i class="fa fa-group"></i> Usuarios</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-laptop"></i> <?php echo $this->translate('Manejar');?>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-tabs" role="tablist" id="myTabUser">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i> <?php echo $this->translate('Lista');?></a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-plus-circle"></i> <?php echo $this->translate('Nuevo');?></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active user-list-cont" id="home"> </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <form id="newUserFrm" class="form-horizontal">
+                            <fieldset class="well">
+                                <input class="form-control"
+                                       placeholder="<?php echo $this->translate('Nombre Usuario');?>"
+                                       type="text"
+                                       id="userUsernameInput"
+                                       name="user[username]"
+                                       required="required"/>
+                                <br>
+                                <input class="form-control"
+                                       placeholder="<?php echo $this->translate('Correo electrónico');?>"
+                                       type="email" maxlength="100"
+                                       id="userEmailInput"
+                                       name="user[email]"
+                                       required="required"/>
+                                <br>
+                                <input class="form-control"
+                                       placeholder="<?php echo $this->translate('Clave de Acceso');?>"
+                                       type="text" maxlength="10"
+                                       min="6" max="10"
+                                       id="userPasswordInput"
+                                       name="user[password]"
+                                       required="required"/>
+                                <br>
+                                <select class="form-control" name="profile[type]" id="userProfileType">
+                                    <option value="operador">operador</option>
+                                    <option value="admin">admin</option>
+                                </select>
+                                <br>
+                                <button class="btn btn-outline btn-warning btn-sm" type="reset">
+                                    <i class="fa fa-power-off"></i> <?php echo $this->translate('Reset');?>
+                                </button>
+                                <button class="btn btn-outline btn-default btn-sm" type="submit">
+                                    <i class="fa fa-plus-circle"></i> <?php echo $this->translate('Usuario');?>
+                                </button>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(user.opt.addFrm).on("submit",function(e){
+            e.preventDefault();
+            user.add($(user.opt.addFrm).serializeHash());
+            return false;
+        });
+        user.init();
+    });
+</script>
